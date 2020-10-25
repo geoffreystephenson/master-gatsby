@@ -1,0 +1,8 @@
+{
+    "extends": [
+        "wesbos"
+    ],
+    "rules": {
+        "indent": [4, "tab"]
+    }
+}
