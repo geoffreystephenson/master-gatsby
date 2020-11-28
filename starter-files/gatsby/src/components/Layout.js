@@ -7,12 +7,12 @@ import Typography from '../styles/Typography';
 
 export default function Layout({ children }) {
 	return (
-		<div>
+		<>
 			<GlobalStyles />
 			<Typography />
 			<Nav />
 			{children}
 			<Footer />
-		</div>
+		</>
 	);
 }
