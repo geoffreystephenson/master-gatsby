@@ -59,7 +59,7 @@ export default {
 		prepare: ({ title, media, ...toppings }) => {
 			// 1. Filter undefined toppings out
 			const tops = Object.values(toppings).filter(Boolean);
-			// 2. return the preview object for the pizza
+			// 2. Return the preview object for the pizza
 			return {
 				title,
 				media,
