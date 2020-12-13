@@ -6,7 +6,7 @@ function SinglePizza({ pizza }) {
 		<div>
 			<Link to={`/pizza/${pizza.slug.current}`}>
 				<h2>
-					<span className="mark">{pizza.name}</span>
+					<span className="marky mark">{pizza.name}</span>
 				</h2>
 				<p>
 					{pizza.toppings.map((topping) => topping.name).join(', ')}
