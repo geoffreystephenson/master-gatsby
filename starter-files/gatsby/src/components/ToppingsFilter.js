@@ -12,7 +12,7 @@ const ToppingsStyles = styled.div`
 		grid-template-columns: auto 1fr;
 		grid-gap: 0 1rem;
 		align-items: center;
-		padding: 5px;
+		padding: 8px;
 		background: var(--grey);
 		border-radius: 2px;
 		text-decoration: none;
