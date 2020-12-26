@@ -12,7 +12,7 @@ const ToppingsStyles = styled.div`
 		grid-template-columns: auto 1fr;
 		grid-gap: 0 1rem;
 		align-items: center;
-		padding: 4px;
+		padding: 5px;
 		background: var(--grey);
 		border-radius: 2px;
 		text-decoration: none;
@@ -80,7 +80,7 @@ export default function ToppingsFilter({ activeTopping }) {
 	// Count how many pizzas are in each topping
 	const toppingsWithCounts = countPizzasInToppings(pizzas.nodes);
 	// Loop over the list of toppings and display the topping and the count of pizzas in that topping
-	// Link it up...
+	// Link it up.. ...  . . .
 	return (
 		<ToppingsStyles>
 			<Link to="/pizzas">
