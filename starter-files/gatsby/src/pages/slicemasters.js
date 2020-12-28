@@ -38,7 +38,6 @@ const SliceMasterStyles = styled.div`
 
 export default function SlicemastersPage({ data }) {
 	const slicemasters = data.slicemasters.nodes;
-	console.log(slicemasters);
 	return (
 		<>
 			<SlicemasterGrid>
