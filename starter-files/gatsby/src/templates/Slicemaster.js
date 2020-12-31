@@ -5,7 +5,7 @@ import Img from 'gatsby-image';
 export default function SlicemasterPage({ data: { person } }) {
 	console.log(person);
 	return (
-		<div className="center">
+		<div className="center img">
 			<Img fluid={person.image.asset.fluid}></Img>
 			<h2>
 				<span className="mark">{person.name}</span>
