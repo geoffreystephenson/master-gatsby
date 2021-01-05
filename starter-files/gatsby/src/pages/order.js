@@ -7,11 +7,17 @@ import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
 import OrderStyles from '../styles/OrderStyles';
 import MenuItemStyles from '../styles/MenuItemStyles';
+import usePizza from '../utils/usePizza';
+import PizzaOrder from '../components/PizzaOrder';
 
 export default function OrderPage({ data }) {
 	const { values, updateValue } = useForm({
 		name: '',
 		email: '',
+	});
+	const { order, addToOrder, removeFromOrder } = usePizza({
+		pizzas,
+		inputs: values,
 	});
 	const pizzas = data.pizzas.nodes;
 	return (
@@ -49,7 +55,16 @@ export default function OrderPage({ data }) {
 							</div>
 							<div>
 								{['S', 'M', 'L'].map((size) => (
-									<button type="button" key={size}>
+									<button
+										type="button"
+										key={size}
+										onClick={() =>
+											addToOrder({
+												id: pizza.id,
+												size,
+											})
+										}
+									>
 										{size}{' '}
 										{formatMoney(
 											calculatePizzaPrice(
@@ -65,6 +80,11 @@ export default function OrderPage({ data }) {
 				</fieldset>
 				<fieldset className="order">
 					<legend>Order</legend>
+					<PizzaOrder
+						order={order}
+						removeFromOrder={removeFromOrder}
+						pizzas={pizzas}
+					/>
 				</fieldset>
 			</OrderStyles>
 		</>
