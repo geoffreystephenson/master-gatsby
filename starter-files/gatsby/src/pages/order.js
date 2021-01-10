@@ -1,7 +1,7 @@
-import { graphql } from 'gatsby';
 import React from 'react';
-import SEO from '../components/SEO';
+import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import SEO from '../components/SEO';
 import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
@@ -16,6 +16,7 @@ export default function OrderPage({ data }) {
 	const { values, updateValue } = useForm({
 		name: '',
 		email: '',
+		mapleSyrup: '',
 	});
 	const {
 		order,
@@ -36,25 +37,39 @@ export default function OrderPage({ data }) {
 	return (
 		<>
 			<SEO title="Order a Pizza!" />
-			<OrderStyles>
-				<fieldset>
+			<OrderStyles onSubmit={submitOrder}>
+				<fieldset disabled={loading}>
 					<legend>Your Info</legend>
-					<label htmlFor="name">Name</label>
+					<label htmlFor="name">
+						Name
+						<input
+							type="text"
+							name="name"
+							id="name"
+							value={values.name}
+							onChange={updateValue}
+						/>
+					</label>
+					<label htmlFor="email">
+						Email
+						<input
+							type="email"
+							name="email"
+							id="email"
+							value={values.email}
+							onChange={updateValue}
+						/>
+					</label>
 					<input
-						type="text"
-						name="name"
-						value={values.name}
+						type="mapleSyrup"
+						name="mapleSyrup"
+						id="mapleSyrup"
+						value={values.mapleSyrup}
 						onChange={updateValue}
-					></input>
-					<label htmlFor="email">Email</label>
-					<input
-						type="email"
-						name="email"
-						value={values.email}
-						onChange={updateValue}
-					></input>
+						className="mapleSyrup"
+					/>
 				</fieldset>
-				<fieldset className="menu">
+				<fieldset disabled={loading} className="menu">
 					<legend>Menu</legend>
 					{pizzas.map((pizza) => (
 						<MenuItemStyles key={pizza.id}>
@@ -62,6 +77,7 @@ export default function OrderPage({ data }) {
 								width="50"
 								height="50"
 								fluid={pizza.image.asset.fluid}
+								alt={pizza.name}
 							/>
 							<div>
 								<h2>{pizza.name}</h2>
@@ -91,7 +107,7 @@ export default function OrderPage({ data }) {
 						</MenuItemStyles>
 					))}
 				</fieldset>
-				<fieldset className="order">
+				<fieldset disabled={loading} className="order">
 					<legend>Order</legend>
 					<PizzaOrder
 						order={order}
@@ -99,17 +115,13 @@ export default function OrderPage({ data }) {
 						pizzas={pizzas}
 					/>
 				</fieldset>
-				<fieldset>
+				<fieldset disabled={loading}>
 					<h3>
-						Your Total Order Is{' '}
+						Your Total is{' '}
 						{formatMoney(calculateOrderTotal(order, pizzas))}
 					</h3>
-					<div>{error ? <p>Error {error}</p> : ''}</div>
-					<button
-						type="submit"
-						disabled={loading}
-						onClick={submitOrder}
-					>
+					<div>{error ? <p>Error: {error}</p> : ''}</div>
+					<button type="submit" disabled={loading}>
 						{loading ? 'Placing Order...' : 'Order Ahead'}
 					</button>
 				</fieldset>
@@ -130,10 +142,7 @@ export const query = graphql`
 				price
 				image {
 					asset {
-						fixed(width: 600, height: 200) {
-							...GatsbySanityImageFixed
-						}
-						fluid(maxWidth: 400) {
+						fluid(maxWidth: 100) {
 							...GatsbySanityImageFluid
 						}
 					}

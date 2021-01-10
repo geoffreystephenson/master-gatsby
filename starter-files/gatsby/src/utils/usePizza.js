@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
-import attachNamesAndPrices from './attachNamesAndPrices';
+import { useState, useContext } from 'react';
 import OrderContext from '../components/OrderContext';
 import calculateOrderTotal from './calculateOrderTotal';
 import formatMoney from './formatMoney';
+import attachNamesAndPrices from './attachNamesAndPrices';
 
 export default function usePizza({ pizzas, values }) {
 	// 1. Create some state to hold our order
@@ -31,10 +31,10 @@ export default function usePizza({ pizzas, values }) {
 	// this is the function that is run when someone submits the form
 	async function submitOrder(e) {
 		e.preventDefault();
+		console.log(e);
 		setLoading(true);
 		setError(null);
-		// setMessage(null);
-		setMessage('Go eat!');
+		// setMessage('Go eat!');
 
 		// gather all the data
 		const body = {
@@ -56,7 +56,6 @@ export default function usePizza({ pizzas, values }) {
 		);
 		const text = JSON.parse(await res.text());
 
-		// checked if everything worked
 		// check if everything worked
 		if (res.status >= 400 && res.status < 600) {
 			setLoading(false); // turn off loading
