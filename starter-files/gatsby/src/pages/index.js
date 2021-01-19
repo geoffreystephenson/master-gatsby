@@ -18,7 +18,7 @@ function HotSlices({ hotSlices }) {
 	return (
 		<div>
 			{!hotSlices && <LoadingGrid count={4} />}
-			{hotSlices && !hotSlices?.length && <p>Nothin' in the Case!</p>}
+			{hotSlices && !hotSlices?.length && <p>Nothin' in the Case</p>}
 		</div>
 	);
 }
