@@ -52,7 +52,7 @@ export default function useLatestData() {
 				setSlicemasters(res.data.StoreSettings.slicemaster);
 			})
 			.catch((err) => {
-				console.log('SHOOOT');
+				console.log('SHOOT');
 				console.log(err);
 			});
 	}, []);
