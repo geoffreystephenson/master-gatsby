@@ -46,13 +46,13 @@ export default function useLatestData() {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				// TODO: checl for errors
+				// TODO: check for errors
 				// set the data to state
 				setHotSlices(res.data.StoreSettings.hotSlices);
 				setSlicemasters(res.data.StoreSettings.slicemaster);
 			})
 			.catch((err) => {
-				console.log('SHOOT');
+				console.log('SHOOOOT');
 				console.log(err);
 			});
 	}, []);

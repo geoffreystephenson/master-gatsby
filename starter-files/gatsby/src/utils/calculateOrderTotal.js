@@ -6,6 +6,7 @@ export default function calculateOrderTotal(order, pizzas) {
 			(singlePizza) => singlePizza.id === singleOrder.id
 		);
 		return (
+			// return total
 			runningTotal + calculatePizzaPrice(pizza.price, singleOrder.size)
 		);
 	}, 0);
