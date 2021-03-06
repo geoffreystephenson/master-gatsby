@@ -27,6 +27,7 @@ export default function SEO({ children, location, description, title, image }) {
 				content="width=device-width, initial-scale=1.0"
 			/>
 			<meta charSet="utf-8" />
+			<meta httpEquiv="X-UA-Compatible" content="IE=Edge" />
 			<meta name="description" content={site.siteMetadata.description} />
 			{/* Open Graph */}
 			{location && <meta property="og:url" content={location.href} />}
